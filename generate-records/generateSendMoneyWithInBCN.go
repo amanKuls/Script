@@ -7,7 +7,7 @@ import (
 	"github.com/google/uuid"
 )
 
-// id", "recipientBcnAccountId", "amount", "senderBcnAccountId",
+// "id", "recipientBcnAccountId", "amount", "senderBcnAccountId",
 // "claimedFeeCustomer", "claimedFeeExpiresAt", "status",
 // "transactionId", "feeCustomerTransactionId"
 func getRowValuesForSendMoneyWithInBCN(
@@ -17,7 +17,7 @@ func getRowValuesForSendMoneyWithInBCN(
 	feeCustomerTransactionId string,
 ) string {
 	SendMoneyWithInBCNUUID := uuid.NewString()
-	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s",
+	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
 		SendMoneyWithInBCNUUID,
 		recipientBcnAccountId,
 		utils.Amount,
@@ -32,51 +32,26 @@ func getRowValuesForSendMoneyWithInBCN(
 }
 
 func generateSendMoneyWithinBCNData() {
-	sender := allGlobalValues[0].BCNAccountUUID1
-	reciever := allGlobalValues[1].BCNAccountUUID1
-	transactionID := uuid.NewString()
-	TransactionTable = getRowValuesForTransaction(
-		transactionID,
-		sender,
-		reciever,
-		false)
-	feeCustomerTransactionId := uuid.NewString()
-	TransactionTable = fmt.Sprintf("%s\n%s",
-		TransactionTable,
-		getRowValuesForTransaction(
-			feeCustomerTransactionId,
-			sender,
-			utils.CustomerFeeBcnAccountId,
-			false,
-		))
-	SendMoneyWithInBCNTable = getRowValuesForSendMoneyWithInBCN(
-		sender,
-		reciever,
-		transactionID,
-		feeCustomerTransactionId,
-	)
 	for i := 2; i < 100; i = i + 2 {
 		transactionID := uuid.NewString()
 		sender := allGlobalValues[i].BCNAccountUUID1
 		reciever := allGlobalValues[i+1].BCNAccountUUID1
 		feeCustomerTransactionId := uuid.NewString()
-		TransactionTable = fmt.Sprintf("%s\n%s",
+		TransactionTable = append(
 			TransactionTable,
 			getRowValuesForTransaction(
 				transactionID,
 				sender,
 				reciever,
-				false,
 			))
-		TransactionTable = fmt.Sprintf("%s\n%s",
+		TransactionTable = append(
 			TransactionTable,
 			getRowValuesForTransaction(
 				feeCustomerTransactionId,
 				sender,
 				utils.CustomerFeeBcnAccountId,
-				false,
 			))
-		SendMoneyWithInBCNTable = fmt.Sprintf("%s\n%s",
+		SendMoneyWithInBCNTable = append(
 			SendMoneyWithInBCNTable,
 			getRowValuesForSendMoneyWithInBCN(
 				sender,

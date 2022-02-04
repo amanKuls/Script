@@ -10,7 +10,7 @@ import (
 func getRowValuesForBCNUser(BCNUserUUID string) string {
 	uniqueUUID := uuid.NewString()
 	uniquePhoneNumber := utils.GetUniquePhoneNumber()
-	return fmt.Sprintf("%s,%s,%s,%s,+91%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+	return fmt.Sprintf("%s,%s,%s,%s,+91%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
 		BCNUserUUID,
 		utils.RandomString,
 		utils.RandomString,
@@ -29,7 +29,7 @@ func getRowValuesForBCNUser(BCNUserUUID string) string {
 		utils.Timestamp,
 		utils.Timestamp,
 		utils.CurrencyCode1,
-		"10",
+		"25",
 	)
 
 }

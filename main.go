@@ -16,6 +16,12 @@ func main() {
 	fmt.Println("So I have to generate 100000 rows!!!")
 	generaterecords.GenerateUserAndAccountRelatedTables(numberOfUsers)
 	generaterecords.GenerateTransactionRelatedTables()
+	generateFiles()
+	//utils.CreateFileWithContents("./csvFiles/Readme.md", Readme)
+
+}
+
+func generateFiles() {
 	utils.CreateFileWithContents("./csvFiles/BCNUser.csv", generaterecords.BCNUserTable)
 	utils.CreateFileWithContents("./csvFiles/BCNAccount.csv", generaterecords.BCNAccountTable)
 	utils.CreateFileWithContents("./csvFiles/Password.csv", generaterecords.PasswordTable)
@@ -25,6 +31,6 @@ func main() {
 	utils.CreateFileWithContents("./csvFiles/Transaction.csv", generaterecords.TransactionTable)
 	utils.CreateFileWithContents("./csvFiles/SendMoneyWithinBCN.csv", generaterecords.SendMoneyWithInBCNTable)
 	utils.CreateFileWithContents("./csvFiles/SendMoneyAccountToAccount.csv", generaterecords.SendMoneyAccountToAccountTable)
-	//utils.CreateFileWithContents("./csvFiles/Readme.md", Readme)
-
+	utils.CreateFileWithContents("./csvFiles/CounterPartyTransaction.csv", generaterecords.CounterPartyTransactionTable)
+	utils.CreateFileWithContents("./csvFiles/LoadMoneyMPGS.csv", generaterecords.LoadMoneyMPGSTable)
 }
