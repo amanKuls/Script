@@ -32,7 +32,7 @@ var ClaimedFeeCounterparty = "35000"
 func GetRandomNumberBetweenRangeExcept(min int, max int, Exception int) int {
 	result := rand.Intn(max-min) + min
 	if result == Exception {
-		result = GetRandomNumberBetweenRangeExcept(min, max, Exception)
+		result = (Exception + max) / 2
 	}
 	return result
 
