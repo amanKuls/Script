@@ -5,20 +5,23 @@ import (
 	"os"
 	generaterecords "script/generate-records"
 	"script/utils"
+	"strconv"
 )
 
 func main() {
-	err := os.MkdirAll("./csvFiles", 0755)
+
+	numberOfUsers, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	err = os.MkdirAll("./csvFiles", 0755)
 	if err != nil {
 		return
 	}
-	numberOfUsers := 1000
-	fmt.Println("So I have to generate 100000 rows!!!")
 	generaterecords.GenerateUserAndAccountRelatedTables(numberOfUsers)
-	generaterecords.GenerateTransactionRelatedTables()
+	generaterecords.GenerateTransactionRelatedTables(numberOfUsers)
 	generateFiles()
-	//utils.CreateFileWithContents("./csvFiles/Readme.md", Readme)
-
 }
 
 func generateFiles() {
@@ -33,4 +36,5 @@ func generateFiles() {
 	utils.CreateFileWithContents("./csvFiles/SendMoneyAccountToAccount.csv", generaterecords.SendMoneyAccountToAccountTable)
 	utils.CreateFileWithContents("./csvFiles/CounterPartyTransaction.csv", generaterecords.CounterPartyTransactionTable)
 	utils.CreateFileWithContents("./csvFiles/LoadMoneyMPGS.csv", generaterecords.LoadMoneyMPGSTable)
+	utils.CreateFileWithContents("./csvFiles/NumberOfTransaction.csv", generaterecords.NumberOfTransactionTable)
 }

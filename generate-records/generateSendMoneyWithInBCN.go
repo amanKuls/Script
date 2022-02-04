@@ -31,11 +31,13 @@ func getRowValuesForSendMoneyWithInBCN(
 
 }
 
-func generateSendMoneyWithinBCNData() {
-	for i := 2; i < 100; i = i + 2 {
+func generateSendMoneyWithinBCNData(start int, end int, NumberOfTransactions int) {
+	for i := 1; i <= NumberOfTransactions; i++ {
+		senderNumber := utils.GetRandomNumberBetweenRange(start, end)
+		recieverNumber := utils.GetRandomNumberBetweenRangeExcept(start, end, senderNumber)
 		transactionID := uuid.NewString()
-		sender := allUsers[i].BCNAccountUUID1
-		reciever := allUsers[i+1].BCNAccountUUID1
+		sender := allUsers[senderNumber].BCNAccountUUID1
+		reciever := allUsers[recieverNumber].BCNAccountUUID1
 		feeCustomerTransactionId := uuid.NewString()
 		TransactionTable = append(
 			TransactionTable,
@@ -43,6 +45,8 @@ func generateSendMoneyWithinBCNData() {
 				transactionID,
 				sender,
 				reciever,
+				senderNumber,
+				recieverNumber,
 			))
 		TransactionTable = append(
 			TransactionTable,
@@ -50,6 +54,8 @@ func generateSendMoneyWithinBCNData() {
 				feeCustomerTransactionId,
 				sender,
 				utils.CustomerFeeBcnAccountId,
+				senderNumber,
+				-1,
 			))
 		SendMoneyWithInBCNTable = append(
 			SendMoneyWithInBCNTable,

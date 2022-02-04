@@ -7,6 +7,8 @@ import (
 	"github.com/google/uuid"
 )
 
+var NumberOfUsers string
+
 var CurrentTime = time.Now().String()
 var UUIDValue = uuid.NewString()
 var RandomString = "Testing123"
@@ -29,6 +31,21 @@ var CustomerFeeBcnAccountId = "4373074b-0fe3-48b2-abbe-b0bb5f7a0a18"
 var MPGSHoldingBcnAcccountId = "b79821f8-4d93-43fe-9fd0-ec795d403126"
 var CounterpartyId = "2cd181cd-7370-404a-a83f-e9b32a0d7948"
 var ClaimedFeeCounterparty = "35000"
+
+func GetRandomNumberBetweenRangeExcept(min int, max int, Exception int) int {
+	result := rand.Intn(max-min) + min
+	if result == Exception {
+		result = GetRandomNumberBetweenRangeExcept(min, max, Exception)
+	}
+	return result
+
+}
+
+func GetRandomNumberBetweenRange(min int, max int) int {
+	result := rand.Intn(max-min) + min
+	return result
+
+}
 
 func GetUniquePhoneNumber() int {
 	return rand.Intn(9999999999-1000000000) + 1000000000

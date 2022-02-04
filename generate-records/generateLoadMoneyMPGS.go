@@ -27,9 +27,10 @@ func getRowValuesForLoadMoneyMPGS(
 	)
 }
 
-func generateLoadMoneyMPGS() {
-	for i := 0; i < 100; i++ {
-		recipientBCNAccountId := allUsers[i].BCNAccountUUID1
+func generateLoadMoneyMPGS(start int, end int, NumberOfTransactions int) {
+	for i := 0; i < NumberOfTransactions; i++ {
+		recipientNumber := utils.GetRandomNumberBetweenRange(start, end)
+		recipientBCNAccountId := allUsers[recipientNumber].BCNAccountUUID1
 		counterPartyTransactionUUID := uuid.NewString()
 		counterPartyFinalTransactionId := uuid.NewString()
 		TransactionTable = append(
@@ -38,6 +39,8 @@ func generateLoadMoneyMPGS() {
 				counterPartyFinalTransactionId,
 				utils.MPGSHoldingBcnAcccountId,
 				recipientBCNAccountId,
+				recipientNumber,
+				-1,
 			),
 		)
 		CounterPartyTransactionTable = append(

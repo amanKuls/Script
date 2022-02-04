@@ -20,6 +20,7 @@ var SendMoneyWithInBCNTable []string
 var TransactionTable []string
 var CounterPartyTransactionTable []string
 var LoadMoneyMPGSTable []string
+var NumberOfTransactionTable []string
 
 type User struct {
 	NoOfTransactions int
@@ -49,8 +50,17 @@ func GenerateUserAndAccountRelatedTables(NumberOfRows int) {
 	}
 }
 
-func GenerateTransactionRelatedTables() {
-	generateSendMoneyWithinBCNData()
-	generateSendMoneyAccountToAccount()
-	generateLoadMoneyMPGS()
+func GenerateTransactionRelatedTables(numberOfUsers int) {
+
+	genereateRecords(0, (numberOfUsers / 10), numberOfUsers)
+	genereateRecords(((numberOfUsers / 10) + 1), ((numberOfUsers / 10) * 4), numberOfUsers/5)
+	genereateRecords((((numberOfUsers / 10) * 4) + 1), ((numberOfUsers / 10) * 6), numberOfUsers/10)
+	genereateRecords((((numberOfUsers / 10) * 6) + 1), ((numberOfUsers / 10) * 8), numberOfUsers/20)
+	generateNumberOfTransactionTable(numberOfUsers)
+}
+
+func genereateRecords(start int, end int, numOfTransaction int) {
+	generateSendMoneyWithinBCNData(start, end, numOfTransaction/2)
+	generateSendMoneyAccountToAccount(start, end)
+	generateLoadMoneyMPGS(start, end, numOfTransaction/4)
 }
