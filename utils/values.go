@@ -7,11 +7,9 @@ import (
 	"github.com/google/uuid"
 )
 
-var NumberOfUsers string
-
 var CurrentTime = time.Now().String()
 var UUIDValue = uuid.NewString()
-var RandomString = "Testing123"
+var RandomString = "Testing"
 var ByteValue = string(make([]byte, 3, 4))
 var DateType = "1994-05-11"
 var Timestamp = "2022-02-03 14:00:00 +02:00"
@@ -19,7 +17,6 @@ var LLTExpire = "2023-02-10 14:00:00 +02:00"
 var Boolean = "false"
 var Amount = "1000000"
 var Balance = "500000"
-var EmialId = "testing@test.com"
 var Gender = "Female"
 var PhoneNumber = rand.Intn(9999999999-1000000000) + 1000000000
 var Locale = "EN_US"

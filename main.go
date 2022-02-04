@@ -1,40 +1,46 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	generaterecords "script/generate-records"
 	"script/utils"
-	"strconv"
 )
 
 func main() {
+	num := flag.Int("n", 1000, "number of users")
+	od := flag.String("o", ".", "Output directory")
 
-	numberOfUsers, err := strconv.Atoi(os.Args[1])
-	if err != nil {
-		fmt.Println(err.Error())
-		return
+	flag.Parse()
+	numberOfUsers := *num
+	outputDirectory := *od
+	utils.GenerateSQLAndShellFiles(outputDirectory)
+	if outputDirectory != "" {
+		outputDirectory = fmt.Sprintf("%s/%s", outputDirectory, "csvFiles")
+	} else {
+		outputDirectory = "./csvFiles"
 	}
-	err = os.MkdirAll("./csvFiles", 0755)
+	err := os.MkdirAll(outputDirectory, 0755)
 	if err != nil {
 		return
 	}
 	generaterecords.GenerateUserAndAccountRelatedTables(numberOfUsers)
 	generaterecords.GenerateTransactionRelatedTables(numberOfUsers)
-	generateFiles()
+	generateFiles(outputDirectory)
 }
 
-func generateFiles() {
-	utils.CreateFileWithContents("./csvFiles/BCNUser.csv", generaterecords.BCNUserTable)
-	utils.CreateFileWithContents("./csvFiles/BCNAccount.csv", generaterecords.BCNAccountTable)
-	utils.CreateFileWithContents("./csvFiles/Password.csv", generaterecords.PasswordTable)
-	utils.CreateFileWithContents("./csvFiles/DefaultBCNAccount.csv", generaterecords.DefaultBCNAccountTable)
-	utils.CreateFileWithContents("./csvFiles/LeoLLT.csv", generaterecords.LeoLLTTable)
-	utils.CreateFileWithContents("./csvFiles/BCNUserLLT.csv", generaterecords.BCNUserLLTTable)
-	utils.CreateFileWithContents("./csvFiles/Transaction.csv", generaterecords.TransactionTable)
-	utils.CreateFileWithContents("./csvFiles/SendMoneyWithinBCN.csv", generaterecords.SendMoneyWithInBCNTable)
-	utils.CreateFileWithContents("./csvFiles/SendMoneyAccountToAccount.csv", generaterecords.SendMoneyAccountToAccountTable)
-	utils.CreateFileWithContents("./csvFiles/CounterPartyTransaction.csv", generaterecords.CounterPartyTransactionTable)
-	utils.CreateFileWithContents("./csvFiles/LoadMoneyMPGS.csv", generaterecords.LoadMoneyMPGSTable)
-	utils.CreateFileWithContents("./csvFiles/NumberOfTransaction.csv", generaterecords.NumberOfTransactionTable)
+func generateFiles(outputDirectory string) {
+	utils.CreateFileWithContents(outputDirectory+"/BCNUser.csv", generaterecords.BCNUserTable)
+	utils.CreateFileWithContents(outputDirectory+"/BCNAccount.csv", generaterecords.BCNAccountTable)
+	utils.CreateFileWithContents(outputDirectory+"/Password.csv", generaterecords.PasswordTable)
+	utils.CreateFileWithContents(outputDirectory+"/DefaultBCNAccount.csv", generaterecords.DefaultBCNAccountTable)
+	utils.CreateFileWithContents(outputDirectory+"/LeoLLT.csv", generaterecords.LeoLLTTable)
+	utils.CreateFileWithContents(outputDirectory+"/BCNUserLLT.csv", generaterecords.BCNUserLLTTable)
+	utils.CreateFileWithContents(outputDirectory+"/Transaction.csv", generaterecords.TransactionTable)
+	utils.CreateFileWithContents(outputDirectory+"/SendMoneyWithinBCN.csv", generaterecords.SendMoneyWithInBCNTable)
+	utils.CreateFileWithContents(outputDirectory+"/SendMoneyAccountToAccount.csv", generaterecords.SendMoneyAccountToAccountTable)
+	utils.CreateFileWithContents(outputDirectory+"/CounterPartyTransaction.csv", generaterecords.CounterPartyTransactionTable)
+	utils.CreateFileWithContents(outputDirectory+"/LoadMoneyMPGS.csv", generaterecords.LoadMoneyMPGSTable)
+	utils.CreateFileWithContents(outputDirectory+"/NumberOfTransaction.csv", generaterecords.NumberOfTransactionTable)
 }

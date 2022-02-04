@@ -33,11 +33,12 @@ func getRowValuesForSendMoneyAccountToAccount(
 
 }
 
-func generateSendMoneyAccountToAccount(start int, end int) {
-	for i := start; i <= end; i++ {
+func generateSendMoneyAccountToAccount(start int, end int, numberOfTransactions int) {
+	for i := 1; i <= numberOfTransactions; i++ {
+		userNumber := utils.GetRandomNumberBetweenRange(start, end)
 		transactionID := uuid.NewString()
-		sender := allUsers[i].BCNAccountUUID1
-		reciever := allUsers[i+1].BCNAccountUUID2
+		sender := allUsers[userNumber].BCNAccountUUID1
+		reciever := allUsers[userNumber].BCNAccountUUID2
 		feeCustomerTransactionId := uuid.NewString()
 		TransactionTable = append(
 			TransactionTable,
@@ -46,7 +47,7 @@ func generateSendMoneyAccountToAccount(start int, end int) {
 				sender,
 				reciever,
 				true,
-				i,
+				userNumber,
 				-1,
 			))
 		TransactionTable = append(
@@ -56,7 +57,7 @@ func generateSendMoneyAccountToAccount(start int, end int) {
 				sender,
 				utils.CustomerFeeBcnAccountId,
 				false,
-				i,
+				userNumber,
 				-1,
 			))
 		SendMoneyAccountToAccountTable = append(

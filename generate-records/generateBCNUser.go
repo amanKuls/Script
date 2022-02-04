@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"script/utils"
 
+	"github.com/bxcodec/faker/v3"
 	"github.com/google/uuid"
 )
 
@@ -12,11 +13,11 @@ func getRowValuesForBCNUser(BCNUserUUID string) string {
 	uniquePhoneNumber := utils.GetUniquePhoneNumber()
 	return fmt.Sprintf("%s,%s,%s,%s,+91%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
 		BCNUserUUID,
-		utils.RandomString,
-		utils.RandomString,
+		faker.FirstName(),
+		faker.LastName(),
 		utils.RandomString,
 		uniquePhoneNumber,
-		utils.EmialId,
+		faker.Email(),
 		utils.DateType,
 		utils.Gender,
 		utils.Locale,

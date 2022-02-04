@@ -1,6 +1,7 @@
 package generaterecords
 
 import (
+	"fmt"
 	"script/utils"
 
 	"github.com/google/uuid"
@@ -37,7 +38,7 @@ func GenerateUserAndAccountRelatedTables(NumberOfRows int) {
 		BCNUserUUID := uuid.NewString()
 		BCNAccountUUID1 := uuid.NewString()
 		BCNAccountUUID2 := uuid.NewString()
-		LeoLLTLLT := uuid.NewString()
+		LeoLLTLLT := fmt.Sprintf("%s--%s", uuid.NewString(), uuid.NewString())
 		temp := User{BCNUserUUID: BCNUserUUID, BCNAccountUUID1: BCNAccountUUID1, BCNAccountUUID2: BCNAccountUUID2, LeoLLTLLT: LeoLLTLLT}
 		allUsers = append(allUsers, temp)
 		BCNUserTable = append(BCNUserTable, getRowValuesForBCNUser(BCNUserUUID))
@@ -52,15 +53,15 @@ func GenerateUserAndAccountRelatedTables(NumberOfRows int) {
 
 func GenerateTransactionRelatedTables(numberOfUsers int) {
 
-	genereateRecords(0, (numberOfUsers / 10), numberOfUsers)
-	genereateRecords(((numberOfUsers / 10) + 1), ((numberOfUsers / 10) * 4), numberOfUsers/5)
-	genereateRecords((((numberOfUsers / 10) * 4) + 1), ((numberOfUsers / 10) * 6), numberOfUsers/10)
-	genereateRecords((((numberOfUsers / 10) * 6) + 1), ((numberOfUsers / 10) * 8), numberOfUsers/20)
+	genereateRecords(0, (numberOfUsers / 10), 10000)
+	genereateRecords(((numberOfUsers / 10) + 1), ((numberOfUsers / 10) * 4), 2000)
+	genereateRecords((((numberOfUsers / 10) * 4) + 1), ((numberOfUsers / 10) * 6), 500)
+	genereateRecords((((numberOfUsers / 10) * 6) + 1), ((numberOfUsers / 10) * 8), 100)
 	generateNumberOfTransactionTable(numberOfUsers)
 }
 
 func genereateRecords(start int, end int, numOfTransaction int) {
-	generateSendMoneyWithinBCNData(start, end, numOfTransaction/2)
-	generateSendMoneyAccountToAccount(start, end)
-	generateLoadMoneyMPGS(start, end, numOfTransaction/4)
+	generateSendMoneyWithinBCNData(start, end, numOfTransaction/3)
+	generateSendMoneyAccountToAccount(start, end, numOfTransaction/3)
+	generateLoadMoneyMPGS(start, end, numOfTransaction/3)
 }
