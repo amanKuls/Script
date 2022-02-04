@@ -15,7 +15,6 @@ func main() {
 	flag.Parse()
 	numberOfUsers := *num
 	outputDirectory := *od
-	utils.GenerateSQLAndShellFiles(outputDirectory)
 	if outputDirectory != "" {
 		outputDirectory = fmt.Sprintf("%s/%s", outputDirectory, "csvFiles")
 	} else {
