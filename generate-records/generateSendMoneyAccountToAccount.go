@@ -45,6 +45,7 @@ func generateSendMoneyAccountToAccount(start int, end int) {
 				transactionID,
 				sender,
 				reciever,
+				true,
 				i,
 				-1,
 			))
@@ -54,6 +55,7 @@ func generateSendMoneyAccountToAccount(start int, end int) {
 				feeCustomerTransactionId,
 				sender,
 				utils.CustomerFeeBcnAccountId,
+				false,
 				i,
 				-1,
 			))

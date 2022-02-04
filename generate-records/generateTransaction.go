@@ -11,6 +11,7 @@ func getRowValuesForTransaction(
 	transactionUUID string,
 	senderBcnAccountId string,
 	recipientBcnAccountId string,
+	isExchangeRateApplied bool,
 	userNumber1 int,
 	userNumber2 int,
 ) string {
@@ -20,10 +21,13 @@ func getRowValuesForTransaction(
 	if userNumber2 >= 0 {
 		allUsers[userNumber2].NoOfTransactions = allUsers[userNumber2].NoOfTransactions + 1
 	}
+	exchangeRateId := "null"
+	exchangeRateMultiplier := "null"
 
-	exchangeRateId := "3e8b871a-f6f6-4bfc-852c-35b553d8a1b1"
-	exchangeRateMultiplier := "204"
-
+	if isExchangeRateApplied {
+		exchangeRateId = "3e8b871a-f6f6-4bfc-852c-35b553d8a1b1"
+		exchangeRateMultiplier = "204"
+	}
 	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s\n",
 		transactionUUID,
 		utils.Amount,

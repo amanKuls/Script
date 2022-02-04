@@ -39,6 +39,7 @@ func generateLoadMoneyMPGS(start int, end int, NumberOfTransactions int) {
 				counterPartyFinalTransactionId,
 				utils.MPGSHoldingBcnAcccountId,
 				recipientBCNAccountId,
+				false,
 				recipientNumber,
 				-1,
 			),

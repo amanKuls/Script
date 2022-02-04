@@ -45,6 +45,7 @@ func generateSendMoneyWithinBCNData(start int, end int, NumberOfTransactions int
 				transactionID,
 				sender,
 				reciever,
+				false,
 				senderNumber,
 				recieverNumber,
 			))
@@ -54,6 +55,7 @@ func generateSendMoneyWithinBCNData(start int, end int, NumberOfTransactions int
 				feeCustomerTransactionId,
 				sender,
 				utils.CustomerFeeBcnAccountId,
+				false,
 				senderNumber,
 				-1,
 			))
