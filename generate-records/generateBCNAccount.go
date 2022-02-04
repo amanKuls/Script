@@ -5,12 +5,12 @@ import (
 	"script/utils"
 )
 
-func getRowValuesForBCNAccount(BCNAccountUUID string, BCNUserUUID string) string {
+func getRowValuesForBCNAccount(BCNAccountUUID string, BCNUserUUID string, currencyCode string) string {
 	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
 		BCNAccountUUID,
 		utils.RandomString,
-		utils.Number,
-		utils.CurrencyCode,
+		utils.Balance,
+		currencyCode,
 		BCNUserUUID,
 		utils.Boolean,
 		utils.Boolean,

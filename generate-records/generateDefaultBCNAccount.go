@@ -8,7 +8,7 @@ import (
 func getRowValuesForDefaulsBCNAccount(BCNUserUUID string, BCNAccountUUID string) string {
 	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s",
 		BCNUserUUID,
-		utils.CurrencyCode,
+		utils.CurrencyCode1,
 		BCNAccountUUID,
 		BCNUserUUID,
 		BCNUserUUID,

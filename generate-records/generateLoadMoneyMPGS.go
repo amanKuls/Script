@@ -1,0 +1,4 @@
+package generaterecords
+
+func getRowValuesForLoadMoneyMPGS() {
+}
