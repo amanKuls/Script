@@ -36,8 +36,8 @@ func getRowValuesForSendMoneyAccountToAccount(
 func generateSendMoneyAccountToAccount() {
 	for i := 0; i < 100; i = i + 2 {
 		transactionID := uuid.NewString()
-		sender := allGlobalValues[i].BCNAccountUUID1
-		reciever := allGlobalValues[i+1].BCNAccountUUID2
+		sender := allUsers[i].BCNAccountUUID1
+		reciever := allUsers[i+1].BCNAccountUUID2
 		feeCustomerTransactionId := uuid.NewString()
 		TransactionTable = append(
 			TransactionTable,

@@ -1,7 +1,6 @@
 package generaterecords
 
 import (
-	"fmt"
 	"script/utils"
 
 	"github.com/google/uuid"
@@ -22,25 +21,24 @@ var TransactionTable []string
 var CounterPartyTransactionTable []string
 var LoadMoneyMPGSTable []string
 
-type Globals struct {
-	BCNUserUUID     string
-	BCNAccountUUID1 string
-	BCNAccountUUID2 string
-	LeoLLTLLT       string
+type User struct {
+	NoOfTransactions int
+	BCNUserUUID      string
+	BCNAccountUUID1  string
+	BCNAccountUUID2  string
+	LeoLLTLLT        string
 }
 
-var allGlobalValues []Globals
+var allUsers []User
 
 func GenerateUserAndAccountRelatedTables(NumberOfRows int) {
-	fmt.Println("Entering for loop")
 	for i := 0; i < NumberOfRows; i++ {
-		fmt.Println(i)
 		BCNUserUUID := uuid.NewString()
 		BCNAccountUUID1 := uuid.NewString()
 		BCNAccountUUID2 := uuid.NewString()
 		LeoLLTLLT := uuid.NewString()
-		temp := Globals{BCNUserUUID: BCNUserUUID, BCNAccountUUID1: BCNAccountUUID1, BCNAccountUUID2: BCNAccountUUID2, LeoLLTLLT: LeoLLTLLT}
-		allGlobalValues = append(allGlobalValues, temp)
+		temp := User{BCNUserUUID: BCNUserUUID, BCNAccountUUID1: BCNAccountUUID1, BCNAccountUUID2: BCNAccountUUID2, LeoLLTLLT: LeoLLTLLT}
+		allUsers = append(allUsers, temp)
 		BCNUserTable = append(BCNUserTable, getRowValuesForBCNUser(BCNUserUUID))
 		BCNAccountTable = append(BCNAccountTable, getRowValuesForBCNAccount(BCNAccountUUID1, BCNUserUUID, utils.CurrencyCode1))
 		BCNAccountTable = append(BCNAccountTable, getRowValuesForBCNAccount(BCNAccountUUID2, BCNUserUUID, utils.CurrencyCode2))

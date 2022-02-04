@@ -29,7 +29,7 @@ func getRowValuesForLoadMoneyMPGS(
 
 func generateLoadMoneyMPGS() {
 	for i := 0; i < 100; i++ {
-		recipientBCNAccountId := allGlobalValues[i].BCNAccountUUID1
+		recipientBCNAccountId := allUsers[i].BCNAccountUUID1
 		counterPartyTransactionUUID := uuid.NewString()
 		counterPartyFinalTransactionId := uuid.NewString()
 		TransactionTable = append(
