@@ -11,7 +11,7 @@ import (
 func getRowValuesForBCNUser(BCNUserUUID string) string {
 	uniqueUUID := uuid.NewString()
 	uniquePhoneNumber := utils.GetUniquePhoneNumber()
-	return fmt.Sprintf("%s,%s,%s,%s,+91%d,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+	return fmt.Sprintf("%s,%s,%s,%s,+91%d,%s,true,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
 		BCNUserUUID,
 		faker.FirstName(),
 		faker.LastName(),
