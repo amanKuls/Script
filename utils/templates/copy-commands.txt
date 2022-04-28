@@ -13,10 +13,10 @@ COPY "public"."BCNUserLLT" FROM '/var/lib/bcn/postgresql/db_data/csvFiles/BCNUse
 COPY "public"."Transaction"("id","amount","senderBcnAccountId","recipientBcnAccountId","resultedAt","exchangeRateMultiplier","exchangeRateId") FROM '/var/lib/bcn/postgresql/db_data/csvFiles/Transaction.csv' DELIMITER ',' NULL 'null';
 
 
-COPY "public"."SendMoneyWithinBCN"("id", "recipientBcnAccountId", "amount", "senderBcnAccountId","claimedFeeCustomer", "claimedFeeExpiresAt", "status","transactionId", "feeCustomerTransactionId") FROM '/var/lib/bcn/postgresql/db_data/csvFiles/SendMoneyWithinBCN.csv' DELIMITER ',';
+COPY "public"."SendMoneyWithinBCN"("id", "recipientBcnAccountId", "amount", "senderBcnAccountId","claimedFeeBCN", "claimedFeeExpiresAt", "status","txnId", "feeBCNTcnId") FROM '/var/lib/bcn/postgresql/db_data/csvFiles/SendMoneyWithinBCN.csv' DELIMITER ',';
 
-COPY "public"."SendMoneyAccountToAccount"("id", "amount", "senderBcnAccountId", "recipientBcnAccountId", "claimedFeeCustomer","confirmationExpiresAt", "status", "transactionId","feeCustomerTransactionId", "exchangeRateId") FROM '/var/lib/bcn/postgresql/db_data/csvFiles/SendMoneyAccountToAccount.csv' DELIMITER ',';
+COPY "public"."SendMoneyAccountToAccount"("id", "amount", "senderBcnAccountId", "recipientBcnAccountId", "claimedFeeBCN","confirmationExpiresAt", "status", "finalTxnId","finalFeeTxnId") FROM '/var/lib/bcn/postgresql/db_data/csvFiles/SendMoneyAccountToAccount.csv' DELIMITER ',';
 
 COPY "public"."CounterpartyTransaction"("id", "counterpartyFinalTransactionId") FROM '/var/lib/bcn/postgresql/db_data/csvFiles/CounterPartyTransaction.csv' DELIMITER ',';
 
-COPY "public"."LoadMoneyMPGS"("id", "amount", "recipientAccountId", "counterpartyId", "claimedFeeCounterparty","claimedFeeCustomer", "claimedFeeExpiresAt", "status", "counterpartyTransactionId") FROM '/var/lib/bcn/postgresql/db_data/csvFiles/LoadMoneyMPGS.csv' DELIMITER ',';
+COPY "public"."LoadMoneyMPGS"("id", "amount", "recipientAccountId", "counterpartyId", "claimedFeeCounterparty","claimedFeeBCN", "claimedFeeExpiresAt", "status", "counterpartyTxnId") FROM '/var/lib/bcn/postgresql/db_data/csvFiles/LoadMoneyMPGS.csv' DELIMITER ',';

@@ -9,15 +9,11 @@ import (
 
 func getRowValuesForPassword(BCNUserUUID string) string {
 	uniqueUUID := uuid.NewString()
-	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s\n",
+	return fmt.Sprintf("%s,%s,%s,%s\n",
 		uniqueUUID,
 		"����",
 		BCNUserUUID,
 		utils.Boolean,
-		BCNUserUUID,
-		BCNUserUUID,
-		utils.Timestamp,
-		utils.Timestamp,
 	)
 
 }

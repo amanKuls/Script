@@ -6,7 +6,7 @@ import (
 )
 
 func getRowValuesForBCNAccount(BCNAccountUUID string, BCNUserUUID string, currencyCode string) string {
-	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
 		BCNAccountUUID,
 		utils.RandomString,
 		utils.Balance,
@@ -14,7 +14,6 @@ func getRowValuesForBCNAccount(BCNAccountUUID string, BCNUserUUID string, curren
 		BCNUserUUID,
 		utils.Boolean,
 		utils.Boolean,
-		BCNUserUUID,
 		BCNUserUUID,
 		utils.Timestamp,
 		utils.Timestamp,

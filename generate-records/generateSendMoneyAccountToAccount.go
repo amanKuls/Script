@@ -9,7 +9,7 @@ import (
 
 // "id", "amount", "senderBcnAccountId", "recipientBcnAccountId", "claimedFeeCustomer",
 // "confirmationExpiresAt", "status", "transactionId",
-// "feeCustomerTransactionId", "exchangeRateId"
+// "feeCustomerTransactionId"
 func getRowValuesForSendMoneyAccountToAccount(
 	senderBCNAccountId string,
 	recipientBCNAccountId string,
@@ -17,8 +17,7 @@ func getRowValuesForSendMoneyAccountToAccount(
 	feeCustomerTransactionId string,
 ) string {
 	sendMoneyAccountToAccountUUID := uuid.NewString()
-	exchangeRateId := "3e8b871a-f6f6-4bfc-852c-35b553d8a1b1"
-	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
 		sendMoneyAccountToAccountUUID,
 		utils.Amount,
 		senderBCNAccountId,
@@ -28,7 +27,6 @@ func getRowValuesForSendMoneyAccountToAccount(
 		utils.Status,
 		transactionId,
 		feeCustomerTransactionId,
-		exchangeRateId,
 	)
 
 }
