@@ -29,6 +29,7 @@ var CustomerFeeBcnAccountId = "4373074b-0fe3-48b2-abbe-b0bb5f7a0a18"
 var MPGSHoldingBcnAcccountId = "b79821f8-4d93-43fe-9fd0-ec795d403126"
 var CounterpartyId = "SENDMONEYEXERNALTOBCN_FDHBANK"
 var ClaimedFeeCounterparty = "35000"
+var TransactionResultedAt = string(time.Now().AddDate(0, -1, 0).UTC().Format(time.RFC3339))
 
 func GetRandomNumberBetweenRangeExcept(min int, max int, Exception int) int {
 	result := rand.Intn(max-min) + min

@@ -53,10 +53,11 @@ func GenerateUserAndAccountRelatedTables(NumberOfRows int) {
 
 func GenerateTransactionRelatedTables(numberOfUsers int) {
 
-	genereateRecords(0, (numberOfUsers / 10), 10000)
-	genereateRecords(((numberOfUsers / 10) + 1), ((numberOfUsers / 10) * 4), 2000)
-	genereateRecords((((numberOfUsers / 10) * 4) + 1), ((numberOfUsers / 10) * 6), 500)
-	genereateRecords((((numberOfUsers / 10) * 6) + 1), ((numberOfUsers / 10) * 8), 100)
+	genereateRecords(0, (numberOfUsers / 10), numberOfUsers*10)
+	genereateRecords(((numberOfUsers / 10) + 1), ((numberOfUsers / 10) * 4), numberOfUsers*2)
+	genereateRecords((((numberOfUsers / 10) * 4) + 1), ((numberOfUsers / 10) * 6), numberOfUsers/2)
+	genereateRecords((((numberOfUsers / 10) * 6) + 1), ((numberOfUsers / 10) * 8), numberOfUsers/5)
+	genereateRecords((((numberOfUsers / 10) * 8) + 1), ((numberOfUsers / 10) * 10), numberOfUsers/10)
 	generateNumberOfTransactionTable(numberOfUsers)
 }
 

@@ -7,19 +7,18 @@ import (
 	"github.com/google/uuid"
 )
 
-// "id", "amount", "recipientAccountId", "counterpartyId", "claimedFeeCounterparty",
+// "id", "amount", "recipientAccountId", "counterpartyId",
 // "claimedFeeCustomer", "claimedFeeExpiresAt", "status", "counterpartyTransactionId"
 func getRowValuesForLoadMoneyMPGS(
 	recipientAccountId string,
 	counterPartyTransactionId string,
 ) string {
 	loadMoneyMPGSUUID := uuid.NewString()
-	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s\n",
 		loadMoneyMPGSUUID,
 		utils.Amount,
 		recipientAccountId,
 		utils.CounterpartyId,
-		utils.ClaimedFeeCounterparty,
 		utils.ClaimedFeeCustomer,
 		utils.Timestamp,
 		utils.Status,

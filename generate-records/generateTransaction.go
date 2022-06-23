@@ -33,7 +33,7 @@ func getRowValuesForTransaction(
 		utils.Amount,
 		senderBcnAccountId,
 		recipientBcnAccountId,
-		utils.Timestamp,
+		utils.TransactionResultedAt,
 		exchangeRateMultiplier,
 		exchangeRateId,
 	)
