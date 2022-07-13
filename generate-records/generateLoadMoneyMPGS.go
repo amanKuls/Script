@@ -7,27 +7,26 @@ import (
 	"github.com/google/uuid"
 )
 
-// "id", "amount", "recipientAccountId", "counterpartyId",
-// "claimedFeeCustomer", "claimedFeeExpiresAt", "status", "counterpartyTransactionId"
+// "id", "amount", "recipientAccountId", "confirmationExpiresAt",
+//  "status", "createdAt"
 func getRowValuesForLoadMoneyMPGS(
 	recipientAccountId string,
 	counterPartyTransactionId string,
+	loadMoneyMPGSUUID string,
 ) string {
-	loadMoneyMPGSUUID := uuid.NewString()
-	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s\n",
+	return fmt.Sprintf("%s,%s,%s,%s,%s,%s\n",
 		loadMoneyMPGSUUID,
 		utils.Amount,
 		recipientAccountId,
-		utils.CounterpartyId,
-		utils.ClaimedFeeCustomer,
 		utils.Timestamp,
 		utils.Status,
-		counterPartyTransactionId,
+		utils.Timestamp,
 	)
 }
 
 func generateLoadMoneyMPGS(start int, end int, NumberOfTransactions int) {
 	for i := 0; i < NumberOfTransactions; i++ {
+		var loadMoneyMPGSUUID = uuid.NewString()
 		recipientNumber := utils.GetRandomNumberBetweenRange(start, end)
 		recipientBCNAccountId := allUsers[recipientNumber].BCNAccountUUID1
 		counterPartyTransactionUUID := uuid.NewString()
@@ -43,6 +42,14 @@ func generateLoadMoneyMPGS(start int, end int, NumberOfTransactions int) {
 				-1,
 			),
 		)
+		UserVisibleTransactionTable = append(
+			UserVisibleTransactionTable,
+			getRowValueForUserVisibleTransactionTable(
+				loadMoneyMPGSUUID,
+				recipientBCNAccountId,
+				false,
+			),
+		)
 		CounterPartyTransactionTable = append(
 			CounterPartyTransactionTable,
 			getRowValuesForCounterPartyTransaction(
@@ -55,6 +62,7 @@ func generateLoadMoneyMPGS(start int, end int, NumberOfTransactions int) {
 			getRowValuesForLoadMoneyMPGS(
 				recipientBCNAccountId,
 				counterPartyTransactionUUID,
+				loadMoneyMPGSUUID,
 			),
 		)
 	}

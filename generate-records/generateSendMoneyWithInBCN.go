@@ -15,8 +15,8 @@ func getRowValuesForSendMoneyWithInBCN(
 	recipientBcnAccountId string,
 	transactionID string,
 	feeCustomerTransactionId string,
+	SendMoneyWithInBCNUUID string,
 ) string {
-	SendMoneyWithInBCNUUID := uuid.NewString()
 	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
 		SendMoneyWithInBCNUUID,
 		recipientBcnAccountId,
@@ -39,6 +39,7 @@ func generateSendMoneyWithinBCNData(start int, end int, NumberOfTransactions int
 		sender := allUsers[senderNumber].BCNAccountUUID1
 		reciever := allUsers[recieverNumber].BCNAccountUUID1
 		feeCustomerTransactionId := uuid.NewString()
+		SendMoneyWithInBCNUUID := uuid.NewString()
 		TransactionTable = append(
 			TransactionTable,
 			getRowValuesForTransaction(
@@ -59,6 +60,29 @@ func generateSendMoneyWithinBCNData(start int, end int, NumberOfTransactions int
 				senderNumber,
 				-1,
 			))
+		// Insert to UserVisibleTransaction For sender
+		UserVisibleTransactionTable = append(
+			UserVisibleTransactionTable,
+			getRowValueForUserVisibleTransactionTable(
+				SendMoneyWithInBCNUUID,
+				sender,
+				false,
+			),
+			getRowValueForUserVisibleTransactionTable(
+				SendMoneyWithInBCNUUID,
+				sender,
+				true,
+			),
+		)
+		// Insert to UserVisibleTransaction For Reciever
+		UserVisibleTransactionTable = append(
+			UserVisibleTransactionTable,
+			getRowValueForUserVisibleTransactionTable(
+				SendMoneyWithInBCNUUID,
+				reciever,
+				false,
+			),
+		)
 		SendMoneyWithInBCNTable = append(
 			SendMoneyWithInBCNTable,
 			getRowValuesForSendMoneyWithInBCN(
@@ -66,6 +90,7 @@ func generateSendMoneyWithinBCNData(start int, end int, NumberOfTransactions int
 				reciever,
 				transactionID,
 				feeCustomerTransactionId,
+				SendMoneyWithInBCNUUID,
 			))
 
 	}

@@ -41,5 +41,6 @@ func generateFiles(outputDirectory string) {
 	utils.CreateFileWithContents(outputDirectory+"/SendMoneyAccountToAccount.csv", generaterecords.SendMoneyAccountToAccountTable)
 	utils.CreateFileWithContents(outputDirectory+"/CounterPartyTransaction.csv", generaterecords.CounterPartyTransactionTable)
 	utils.CreateFileWithContents(outputDirectory+"/LoadMoneyMPGS.csv", generaterecords.LoadMoneyMPGSTable)
+	utils.CreateFileWithContents(outputDirectory+"/UserVisibleTransaction.csv", generaterecords.UserVisibleTransactionTable)
 	utils.CreateFileWithContents(outputDirectory+"/NumberOfTransaction.csv", generaterecords.NumberOfTransactionTable)
 }

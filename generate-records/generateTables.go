@@ -19,6 +19,7 @@ var BCNUserLLTTable []string
 var SendMoneyAccountToAccountTable []string
 var SendMoneyWithInBCNTable []string
 var TransactionTable []string
+var UserVisibleTransactionTable []string
 var CounterPartyTransactionTable []string
 var LoadMoneyMPGSTable []string
 var NumberOfTransactionTable []string

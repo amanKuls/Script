@@ -15,8 +15,8 @@ func getRowValuesForSendMoneyAccountToAccount(
 	recipientBCNAccountId string,
 	transactionId string,
 	feeCustomerTransactionId string,
+	sendMoneyAccountToAccountUUID string,
 ) string {
-	sendMoneyAccountToAccountUUID := uuid.NewString()
 	return fmt.Sprintf("%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
 		sendMoneyAccountToAccountUUID,
 		utils.Amount,
@@ -38,6 +38,7 @@ func generateSendMoneyAccountToAccount(start int, end int, numberOfTransactions 
 		sender := allUsers[userNumber].BCNAccountUUID1
 		reciever := allUsers[userNumber].BCNAccountUUID2
 		feeCustomerTransactionId := uuid.NewString()
+		sendMoneyAccountToAccountUUID := uuid.NewString()
 		TransactionTable = append(
 			TransactionTable,
 			getRowValuesForTransaction(
@@ -58,6 +59,25 @@ func generateSendMoneyAccountToAccount(start int, end int, numberOfTransactions 
 				userNumber,
 				-1,
 			))
+		UserVisibleTransactionTable = append(
+			UserVisibleTransactionTable,
+			getRowValueForUserVisibleTransactionTable(
+				sendMoneyAccountToAccountUUID,
+				sender,
+				false,
+			),
+			getRowValueForUserVisibleTransactionTable(
+				sendMoneyAccountToAccountUUID,
+				sender,
+				true,
+			),
+			getRowValueForUserVisibleTransactionTable(
+				sendMoneyAccountToAccountUUID,
+				reciever,
+				false,
+			),
+		)
+
 		SendMoneyAccountToAccountTable = append(
 			SendMoneyAccountToAccountTable,
 			getRowValuesForSendMoneyAccountToAccount(
@@ -65,6 +85,7 @@ func generateSendMoneyAccountToAccount(start int, end int, numberOfTransactions 
 				reciever,
 				transactionID,
 				feeCustomerTransactionId,
+				sendMoneyAccountToAccountUUID,
 			))
 
 	}
