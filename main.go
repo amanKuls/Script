@@ -35,6 +35,7 @@ func generateFiles(outputDirectory string) {
 	utils.CreateFileWithContents(outputDirectory+"/Password.csv", generaterecords.PasswordTable)
 	utils.CreateFileWithContents(outputDirectory+"/DefaultBCNAccount.csv", generaterecords.DefaultBCNAccountTable)
 	utils.CreateFileWithContents(outputDirectory+"/LeoLLT.csv", generaterecords.LeoLLTTable)
+	utils.CreateFileWithContents(outputDirectory+"/LeoSLT.csv", generaterecords.LeoSLTTable)
 	utils.CreateFileWithContents(outputDirectory+"/BCNUserLLT.csv", generaterecords.BCNUserLLTTable)
 	utils.CreateFileWithContents(outputDirectory+"/Transaction.csv", generaterecords.TransactionTable)
 	utils.CreateFileWithContents(outputDirectory+"/SendMoneyWithinBCN.csv", generaterecords.SendMoneyWithInBCNTable)
@@ -43,4 +44,5 @@ func generateFiles(outputDirectory string) {
 	utils.CreateFileWithContents(outputDirectory+"/LoadMoneyMPGS.csv", generaterecords.LoadMoneyMPGSTable)
 	utils.CreateFileWithContents(outputDirectory+"/UserVisibleTransaction.csv", generaterecords.UserVisibleTransactionTable)
 	utils.CreateFileWithContents(outputDirectory+"/NumberOfTransaction.csv", generaterecords.NumberOfTransactionTable)
+	utils.CreateFileWithContents(outputDirectory+"/GetTransaction.csv", generaterecords.GetTransactionTable)
 }

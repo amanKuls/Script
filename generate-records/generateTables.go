@@ -12,6 +12,7 @@ var BCNAccountTable []string
 var PasswordTable []string
 var DefaultBCNAccountTable []string
 var LeoLLTTable []string
+var LeoSLTTable []string
 var BCNUserLLTTable []string
 
 // Transaction related tables
@@ -23,6 +24,7 @@ var UserVisibleTransactionTable []string
 var CounterPartyTransactionTable []string
 var LoadMoneyMPGSTable []string
 var NumberOfTransactionTable []string
+var GetTransactionTable []string
 
 type User struct {
 	NoOfTransactions int
@@ -30,6 +32,7 @@ type User struct {
 	BCNAccountUUID1  string
 	BCNAccountUUID2  string
 	LeoLLTLLT        string
+	LeoSLTSLT        string
 }
 
 var allUsers []User
@@ -40,6 +43,7 @@ func GenerateUserAndAccountRelatedTables(NumberOfRows int) {
 		BCNAccountUUID1 := uuid.NewString()
 		BCNAccountUUID2 := uuid.NewString()
 		LeoLLTLLT := fmt.Sprintf("%s--%s", uuid.NewString(), uuid.NewString())
+		LeoSLTSLT := fmt.Sprintf("%s--%s", uuid.NewString(), uuid.NewString())
 		temp := User{BCNUserUUID: BCNUserUUID, BCNAccountUUID1: BCNAccountUUID1, BCNAccountUUID2: BCNAccountUUID2, LeoLLTLLT: LeoLLTLLT}
 		allUsers = append(allUsers, temp)
 		BCNUserTable = append(BCNUserTable, getRowValuesForBCNUser(BCNUserUUID))
@@ -48,6 +52,9 @@ func GenerateUserAndAccountRelatedTables(NumberOfRows int) {
 		PasswordTable = append(PasswordTable, getRowValuesForPassword(BCNUserUUID))
 		DefaultBCNAccountTable = append(DefaultBCNAccountTable, getRowValuesForDefaulsBCNAccount(BCNUserUUID, BCNAccountUUID1))
 		LeoLLTTable = append(LeoLLTTable, getRowValuesForLeoLLT(LeoLLTLLT))
+		LeoSLTTable = append(LeoSLTTable, getRowValuesForLeoSLT(LeoSLTSLT, LeoLLTLLT))
+		GetTransactionTable = append(GetTransactionTable, getRowValuesGetTransaction(LeoSLTSLT, BCNAccountUUID1))
+		GetTransactionTable = append(GetTransactionTable, getRowValuesGetTransaction(LeoSLTSLT, BCNAccountUUID2))
 		BCNUserLLTTable = append(BCNUserLLTTable, getRowValuesForBCNUserLLT(BCNUserUUID, LeoLLTLLT))
 	}
 }
